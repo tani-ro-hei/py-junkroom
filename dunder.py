@@ -22,7 +22,7 @@ class Test():
         pass
 
 def print_dir_Test():
-    print(list(filter(lambda name: "var" in name, dir(Test))), "\n")
+    print([key for key in dir(Test) if "var" in key], end="\n\n")
 
 
 t = Test()
