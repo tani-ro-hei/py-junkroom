@@ -5,8 +5,8 @@
 
 class MoneyThrowable():
 
-    def __init__(self):
-        self.money = 1000  # 最初の所持金
+    def __init__(self, money=0):
+        self.money = money
 
     def throw_money(self, money):
         if type(money) != int:
@@ -21,32 +21,40 @@ class MoneyThrowable():
     def mymoney(self):
         print(f"所持金は{self.money}円です。")
 
+
 class TestClass1(MoneyThrowable):
 
-    def __init__(self):
-        super().__init__()
-        self.money += 300  # 最初の所持金は1300円になる
+    def __init__(self, money=0):
+        super().__init__(money)
+        self.money += 300  # 最初の所持金は＋300円になる
 
-t1 = TestClass1()
+
+t1 = TestClass1(money=1000)
+t1.mymoney()         #=> 所持金は1300円です。
 t1.throw_money(100)  #=> 視聴者の<module>さんから100円いただきました、どうもありがとうございます！
 t1.mymoney()         #=> 所持金は1400円です。
 
 
-# 2) クラスデコレータによる方法
+# 2) クラスデコレータによる方法(そんな方法はないが)
 
 def money_throwable(cls):
-    # 面倒なので再利用してそのまま代入した
+    # 面倒なので、再利用してそのまま代入した
     cls.throw_money = MoneyThrowable.throw_money
     cls.mymoney     = MoneyThrowable.mymoney
 
     return cls
 
+
 @money_throwable
 class TestClass2():
 
-    def __init__(self):
-        self.money = 10000
+    def __init__(self, money):
+        self.money = money - 100  # 最初の所持金は－100円になる
 
-t2 = TestClass2()
+
+t2 = TestClass2(money=10000)
+t2.mymoney()         #=> 所持金は9900円です。
 t2.throw_money(500)  #=> 視聴者の<module>さんから500円いただきました、どうもありがとうございます！
-t2.mymoney()         #=> 所持金は10500円です。
+t2.mymoney()         #=> 所持金は10400円です。
+
+t2.throw_money('x')  #=> ... TypeError: <x>: 金ではありません！
