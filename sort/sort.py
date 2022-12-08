@@ -47,27 +47,25 @@ lis1δ = list(sorted(lines1, key=lambda s: (len(s), s)))
 lis2δ = list(sorted(lines2, key=lambda s: (len(s), s)))
 
 print(
-    "辞書式:         ",
-    "1の数 降順:     ",
-    "長さ→辞書式:   ",
-    "同じ(タプルで): ", '  ',
-
-    "辞書式:         ",
-    "Aの数 降順:     ",
-    "長さ→辞書式:   ",
-    "同じ(タプルで): ", '  ',
-    sep=''
+    "辞書式:         "
+    "1の数 降順:     "
+    "長さ→辞書式:   "
+    "同じ(タプルで): "
+    '  '
+    "辞書式:         "
+    "Aの数 降順:     "
+    "長さ→辞書式:   "
+    "同じ(タプルで): "
 )
 for i in range(0, 99):
     print(
         lis1α[i].ljust(16),
         lis1β[i].ljust(16),
         lis1γ[i].ljust(16),
-        lis1δ[i].ljust(16), '  ',
-
+        lis1δ[i].ljust(16),
+        '  ',
         lis2α[i].ljust(16),
         lis2β[i].ljust(16),
         lis2γ[i].ljust(16),
-        lis2δ[i].ljust(16), '  ',
-        sep=''
+        lis2δ[i].ljust(16),  sep=''
     )
